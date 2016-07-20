@@ -13,8 +13,6 @@
 <body>
   <div>
   <input class="form-control" type="url" value="http://10.2.2.75:7474" id="neo4jUrl"/><br/>
-  <input class="form-control" type="text" size="8" value="neo4j" id="neo4jUser"/>
-  <input class="form-control" type="password" size="8" placeholder="password" value="test" id="neo4jPass"/><br/>
   <textarea name="cypher" id="cypher" rows="4" cols="120" data-lang="cypher" class="code form-control">
   MATCH (n)-[r]->(m)
   RETURN n,r,m
@@ -60,7 +58,7 @@
     $(document).ready(function() {
 		//todo dynamic configuration
 		var config = {}
-	    var connection = function() { return {url:$("#neo4jUrl").val(), user:$("#neo4jUser").val(),pass:$("#neo4jPass").val()}; }
+	    var connection = function() { return {url:$("#neo4jUrl").val()}; }
 		new Cy2NeoD3(config,"graph","datatable","cypher","execute", connection , true);
 	});
 </script>
