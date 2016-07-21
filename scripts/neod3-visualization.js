@@ -217,7 +217,7 @@ function Neod3Renderer() {
         var zoomBehavior = d3.behavior.zoom().on("zoom", applyZoom).scaleExtent([0.2, 8]);
 
         renderer.call(graphView);
-        renderer.call(zoomBehavior);
+        //renderer.call(zoomBehavior);
 
         zoomHandlers.wheel = renderer.on("wheel.zoom");
         zoomHandlers.mousewheel = renderer.on("mousewheel.zoom");

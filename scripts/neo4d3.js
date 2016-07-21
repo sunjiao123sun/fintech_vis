@@ -7,7 +7,7 @@ function Neo(urlSource) {
 	var me = {
 		executeQuery: function(query, params, cb) {
 			var connection = urlSource();
-			var auth = (("neo4j" || "") == "") ? "" : "Basic " + btoa("neo4j" + ":" + "1991412");
+			var auth = ((connection.user || "") == "") ? "" : "Basic " + btoa("neo4j" + ":" + "1991412");
 			$.ajax(txUrl(), {
 				type: "POST",
 				data: JSON.stringify({

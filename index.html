@@ -1,66 +1,137 @@
 <html>
+
 <head>
-<link rel="stylesheet" href="styles/codemirror.css">
-<link rel="stylesheet" href="styles/codemirror-neo.css">
-<link rel="stylesheet" href="styles/cy2neo.css">
-<link rel="stylesheet" href="styles/neod3.css">
-<link rel="stylesheet" href="styles/datatable.css">
-<link rel="stylesheet" href="styles/vendor.css"> <!-- bootstrap-->
-<link rel="stylesheet" href="styles/sweet-alert.css">
-<link rel="stylesheet" href="styles/gh-fork-ribbon.css">
-<title>Company Networks</title>
+    <link rel="stylesheet" href="styles/codemirror.css">
+    <link rel="stylesheet" href="styles/codemirror-neo.css">
+    <link rel="stylesheet" href="styles/cy2neo.css">
+    <link rel="stylesheet" href="styles/neod3.css">
+    <link rel="stylesheet" href="styles/datatable.css">
+    <link rel="stylesheet" href="styles/vendor.css">
+    <link rel="stylesheet" href="styles/style.css" media="screen" />
+    <!-- bootstrap-->
+    <link rel="stylesheet" href="styles/sweet-alert.css">
+    <link rel="stylesheet" href="styles/gh-fork-ribbon.css">
+    <title>Company Networks</title>
+    
 </head>
+
 <body>
-  <div>
-  <input class="form-control" type="url" value="http://10.2.2.75:7474" id="neo4jUrl"/><br/>
-  <textarea name="cypher" id="cypher" rows="4" cols="120" data-lang="cypher" class="code form-control">
-  MATCH (n)-[r]->(m)
-  RETURN n,r,m
-  LIMIT 50;
-  </textarea>
-  <a href="#" title="Execute" id="execute"><i class="fa fa-play-circle-o"></i></a>
-  </div>
-
-<div role="tabpanel">
-
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#graph" aria-controls="home" role="tab" data-toggle="tab">Graph</a></li>
-    <li role="presentation"><a href="#table" aria-controls="table" role="tab" data-toggle="tab">Table</a></li>
-  </ul>
-
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="graph">
-    	<div class="tab-pane active" id="graph">&nbsp;</div>
+    <div>
+        <input class="form-control" type="url" value="http://10.2.2.75:7474" id="neo4jUrl" />
+        <br/>
+        <input class="form-control" type="text" size="8" value="neo4j" id="neo4jUser" />
+        <input class="form-control" type="password" size="8" placeholder="password" value="test" id="neo4jPass" />
+        <br/>
+        <div >
+        <textarea name="cypher" id="cypher" rows="4" cols="120" data-lang="cypher" class="code form-control" >
+            MATCH (n)-[r]->(m) RETURN n,r,m LIMIT 50;
+        </textarea>
+        <a href="#" title="Execute" id="execute"><i class="fa fa-play-circle-o"></i></a></div>
     </div>
-    <div role="tabpanel" class="tab-pane" id="table">
-    	<div id="datatable"></div>
+    <div class="selectBox">
+    <h4>company:
+        <select id="company">
+        <option value="APPLE INC">Apple</option>
+        <option value="INTERNATIONAL BUSINESS MACHINES">IBM</option>
+        <option value="ALPHABET INC">Google</option>]
+        <option value="AMAZON COM INC">Amazon</option>
+        <option value="YAHOO INC">Yahoo</option>
+    </select>
+    </h4>
+
     </div>
-  </div>
+    <div class="selectBox">
+    <h4>filter by relationship:<select name="relationship" id="relationship">
+        <option value="ALL" selected>ALL</option>
+        <option value="COMPETITOR">COMPETITOR</option>
+        <option value="SUPPLIER">SUPPLIER</option>
+        <option value="CUSTOMER">CUSTOMER</option>
+        <option value="PARTNER-DISTRIB">PARTNER-DISTRIB</option>
+        <option value="PARTNER-EINVEST">PARTNER-EINVEST</option>
+        <option value="PARTNER-INTPROD">PARTNER-INTPROD</option>
+        <option value="PARTNER-INVESTO">PARTNER-INVESTO</option>
+        <option value="PARTNER-LICENIN">PARTNER-LICENIN</option>
+        <option value="PARTNER-LICENOT">PARTNER-LICENOT</option>
+        <option value="PARTNER-JVENTUR">PARTNER-JVENTUR</option>
+        <option value="PARTNER-MANUFAC">PARTNER-MANUFAC</option>
+        <option value="PARTNER-MARKTING">PARTNER-MARKTING</option>
+        <option value="PARTNER-NA">PARTNER-NA</option>
+        <option value="PARTNER-RESCOLB">PARTNER-RESCOLB</option>
+        <option value="PARTNER-TECHNGY">PARTNER-TECHNGY</option>
+    </select>
+    </h4>
 
+    </div>
+    <div role="tabpanel">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#graph" aria-controls="home" role="tab" data-toggle="tab">Graph</a></li>
+            <li role="presentation"><a href="#table" aria-controls="table" role="tab" data-toggle="tab">Table</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="graph">
+                <div class="tab-pane active" id="graph">&nbsp;</div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="table">
+                <div id="datatable"></div>
+            </div>
+        </div>
+    </div>
 
-</div>
-
-<script src="scripts/codemirror.js"></script>
-<script src="scripts/codemirror-cypher.js"></script>
-<script src="scripts/vendor.js"></script>
-<script src="scripts/sweet-alert.min.js"></script>
-<script src="scripts/neod3.js"></script>
-<script src="scripts/neod3-visualization.js"></script>
-<script src="scripts/neo4d3.js"></script>
-<script src="scripts/cy2neod3.js"></script>
-<script src="scripts/jquery.dataTables.min.js"></script>
-<script src="scripts/cypher.datatable.js"></script>
-
-
-<script type="text/javascript">
+    <div id="timeline">
+        <ul id="dates">
+            <li><a href="#" id="2006">2006</a></li>
+            <li><a href="#" id="2007">2007</a></li>
+            <li><a href="#" id="2008">2008</a></li>
+            <li><a href="#" id="2009">2009</a></li>
+            <li><a href="#" id="2010">2010</a></li>
+            <li><a href="#" id="2011">2011</a></li>
+            <li><a href="#" id="2012">2012</a></li>
+            <li><a href="#" id="2013">2013</a></li>
+            <li><a href="#" id="2014">2014</a></li>
+            <li><a href="#" id="2015">2015</a></li>
+            <li><a href="#" id="2016">2016</a></li>
+        </ul>
+    </div>
+    <div style="display:none">
+        <input type="text" id="curDate" value="2006">
+    </div>
+    <footer>
+        <p>This demo is made by Ling Huang, Wei Xu and Yang Zhang.</p>
+    </footer>
+    <script src="scripts/jquery.min.js"></script>   
+    <script src="scripts/codemirror.js"></script>
+    <script src="scripts/codemirror-cypher.js"></script>
+    <script src="scripts/vendor.js"></script>
+    <script src="scripts/sweet-alert.min.js"></script>
+    <script src="scripts/neod3.js"></script>
+    <script src="scripts/neod3-visualization.js"></script>
+    <script src="scripts/neo4d3.js"></script>
+    <script src="scripts/cy2neod3.js"></script>
+    <script src="scripts/jquery.dataTables.min.js"></script>
+    <script src="scripts/cypher.datatable.js"></script>
+    <script src="scripts/jquery.timelinr-0.9.6.js"></script>
+    <script type="text/javascript">
     $(document).ready(function() {
-		//todo dynamic configuration
-		var config = {}
-	    var connection = function() { return {url:$("#neo4jUrl").val()}; }
-		new Cy2NeoD3(config,"graph","datatable","cypher","execute", connection , true);
-	});
-</script>
+        //todo dynamic configuration
+        $(function() {
+            $().timelinr({
+                arrowKeys: 'true',
+            })
+        });
+        var config = {}
+        var connection = function() {
+            return {
+                url: $("#neo4jUrl").val(),
+                user: $("#neo4jUser").val(),
+                pass: $("#neo4jPass").val()
+            };
+        }
+        new Cy2NeoD3(config, "graph", "datatable", "cypher", "execute", connection, true);
+        
+    });
+    </script>
 </body>
+
 </html>
