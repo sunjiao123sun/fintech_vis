@@ -158,7 +158,8 @@ function Neod3Renderer() {
             'stroke-width': function(node) {
               return "2px";
             }
-          });
+          })
+              .on()
           var text = svg.selectAll('text.legend').data(keys);
           text.enter().append('text').classed('legend',true).attr({
             'text-anchor': 'left',
