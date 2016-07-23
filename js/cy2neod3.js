@@ -50,11 +50,23 @@ function Cy2NeoD3(config, graphId, tableId, sourceId, execId, urlSource, renderG
 		return false;
 	});
 
-	function createQuery(company, relation, curDate) {
+	function createQuery(company, relation, curDate,sector) {
         //return "MATCH (n)-[r]->(m) WHERE n.start_year <=" + curDate + " and n.end_year>=" + curDate + " and r.type=\"" + relation + "\" RETURN n,r,m";
-        if(relation=="ALL")
-            return "MATCH (n)-[r]-(m) WHERE n.name= \""+company+"\" and r.start_year<="+curDate+" and r.end_year>="+curDate+" RETURN n,r,m LIMIT 100";
-        return "MATCH (n)-[r:`"+relation+"`]->(m) WHERE n.name= \""+company+"\" and r.start_year<="+curDate+" and r.end_year>="+curDate+" RETURN n,r,m LIMIT 100"; //"MATCH (n)-[r]->(m) WHERE n.name = \""+company+"\" and r.type=\"" + relation + "\"  RETURN n,r,m";
+        if(relation=="ALL"){
+            if(sector == "ALL"){
+                return "MATCH (n)-[r]-(m) WHERE n.name= \""+company+"\" and r.start_year<="+curDate+" and r.end_year>="+curDate+" RETURN n,r,m LIMIT 100";
+            }else{
+                return "MATCH (n:"+sector+")-[r]-(m) WHERE n.name= \""+company+"\" and r.start_year<="+curDate+" and r.end_year>="+curDate+" RETURN n,r,m LIMIT 100";
+            }
+        }
+        else{
+            if(sector == "ALL"){
+                return "MATCH (n)-[r:`"+relation+"`]-(m) WHERE n.name= \""+company+"\" and r.start_year<="+curDate+" and r.end_year>="+curDate+" RETURN n,r,m LIMIT 100"; //"MATCH (n)-[r]->(m) WHERE n.name = \""+company+"\" and r.type=\"" + relation + "\"  RETURN n,r,m";
+            }else{
+                return "MATCH (n:"+sector+")-[r:`"+relation+"`]-(m) WHERE n.name= \""+company+"\" and r.start_year<="+curDate+" and r.end_year>="+curDate+" RETURN n,r,m LIMIT 100"; //"MATCH (n)-[r]->(m) WHERE n.name = \""+company+"\" and r.type=\"" + relation + "\"  RETURN n,r,m";
+            }
+
+        }
     }
 
     function execute() {
@@ -62,7 +74,8 @@ function Cy2NeoD3(config, graphId, tableId, sourceId, execId, urlSource, renderG
             var curDate = $("#curDate").val();
             var relation = $("#relationship").val();
             var company = $("#company").val();
-            var query = createQuery(company, relation, curDate);
+            var sector = $("#sector").val();
+            var query = createQuery(company, relation, curDate,sector);
             console.log("Executing Query", query);
             neo.executeQuery(query, {}, function(err, res) {
                 res = res || {}
@@ -106,5 +119,8 @@ function Cy2NeoD3(config, graphId, tableId, sourceId, execId, urlSource, renderG
         execute();
     });
 
+    $("#sector").change(function(){
+        execute();
+    })
 
 }

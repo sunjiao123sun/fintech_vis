@@ -544,8 +544,8 @@ neo.layout = (function() {
     _force.init = function(render) {
       var accelerateLayout, d3force, forceLayout, linkDistance;
       forceLayout = {};
-      linkDistance = 60;
-      d3force = d3.layout.force().linkDistance(linkDistance).charge(-1000).gravity(0.3);
+      linkDistance = 160;
+      d3force = d3.layout.force().linkDistance(linkDistance).charge(-1000).gravity(0.1);
       accelerateLayout = function() {
         var d3Tick, maxAnimationFramesPerSecond, maxComputeTime, maxStepsPerTick, now;
         maxStepsPerTick = 100;
@@ -714,7 +714,7 @@ neo.style = (function() {
         'border-color': '#F3BA25',
         'text-color-internal': '#000000'
       }, {
-        color: '#4356C0',
+        color: '#DCDCDC',
         'border-color': '#3445A2',
         'text-color-internal': '#FFFFFF'
       }, {
@@ -745,13 +745,13 @@ neo.style = (function() {
     ],
     style: {
       'node': {
-        'diameter': '40px',
+        'diameter': '50px',
         'color': '#DFE1E3',
         'border-color': '#D4D6D7',
         'border-width': '2px',
         'text-color-internal': '#000000',
         'caption': '{id}',
-        'font-size': '10px'
+        'font-size': '8px'
       },
       'relationship': {
         'color': '#D4D6D7',
@@ -1432,6 +1432,7 @@ neo.utils.measureText = (function() {
 
 (function() {
   var arrowPath, nodeCaption, nodeOutline, nodeOverlay, noop, relationshipOverlay, relationshipType;
+  var showDetails,hideDetails;
   noop = function() {};
   nodeOutline = new neo.Renderer({
     onGraphChange: function(selection, viz) {
@@ -1457,6 +1458,20 @@ neo.utils.measureText = (function() {
           return viz.style.forNode(node).get('border-width');
         }
       });
+      showDetails = function (node) {
+        var content;
+        content = '<h4 class="text-center">' + node.propertyMap.name + '</span></h4>';
+        content += '<hr class="tooltip-hr">';
+        content += '<p class="text-center">' + node.propertyMap.country+ '</span></p>';
+        $("#detailInfo").html(content);
+        $("#detailInfo").show();
+      };
+      hideDetails = function () {
+        $("#detailInfo").hide();
+      };
+      circles.on("mouseover", showDetails);//.on("mouseout", hideDetails);
+      circles.on("click",showDetails);
+
       return circles.exit().remove();
     },
     onTick: noop
@@ -1469,7 +1484,7 @@ neo.utils.measureText = (function() {
       });
       text.enter().append('text').attr({
         'text-anchor': 'middle',
-        'font-weight': 'bold',
+        'font-weight': 'normal',
         'stroke': '#FFFFFF',
         'stroke-width' : '0'
       });
@@ -1507,7 +1522,7 @@ neo.utils.measureText = (function() {
       });
       circles.attr({
         r: function(node) {
-          return node.radius + 6;
+          return node.radius;
         }
       });
       return circles.exit().remove();
