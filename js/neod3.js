@@ -715,7 +715,7 @@ neo.style = (function() {
         'text-color-internal': '#000000'
       }, {
         color: '#DCDCDC',
-        'border-color': '#3445A2',
+        'border-color': '#D3D3D3',
         'text-color-internal': '#FFFFFF'
       }, {
         color: '#FF6C7C',
