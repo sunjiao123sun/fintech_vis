@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <link rel="shortcut icon" href="images/favicon.ico" >
     <!-- bootstrap-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/codemirror.css">
@@ -127,15 +128,26 @@
                 <div class="form-group">
                     <select id="sector" class="form-control">
                         <option value="ALL">ALL</option>
-                        <option value="Category">Category</option>
                         <option value="ConsumerDiscret">ConsumerDiscret</option>
                         <option value="InformationTech">InformationTech</option>
-                        ]
-                        <option value="AMAZON COM INC">Amazon</option>
-                        <option value="YAHOO INC">Yahoo</option>
+                        <option value="ConsumerStaples">ConsumerStaples</option>
+                        <option value="Energy">Energy</option>
+                        <option value="Financials">Financials</option>
+                        <option value="HealthCare">HealthCare</option>
+                        <option value="Industrials">Industrials</option>
+                        <option value="Materials">Materials</option>
+                        <option value="Telecommunicati">Telecommunicati</option>
+                        <option value="Utilities">Utilities</option>
                     </select>
                 </div>
             </form>
+            <hr>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="type your question...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" >Submit</button>
+              </span>
+            </div>
             <!--<div class="dropdown">-->
                 <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
                     <!--Dropdown-->
@@ -158,7 +170,7 @@
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#graph" aria-controls="home" role="tab" data-toggle="tab">Graph</a>
             </li>
-            <li role="presentation"><a href="#table" aria-controls="table" role="tab" data-toggle="tab">Table</a></li>
+            <!--<li role="presentation"><a href="#table" aria-controls="table" role="tab" data-toggle="tab">Table</a></li>-->
         </ul>
         <!-- Tab panes -->
         <div class="tab-content">
@@ -186,27 +198,28 @@
                 &nbsp;
             </div>
         </div>
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="type your question..." style="height: 37.8px">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button" >Submit</button>
-              </span>
+        <div class="line-chart">
+
         </div>
         <!-- /input-group -->
     </div>
 </div>
 
-<div style="display:none">
+<div >
     <input type="text" id="curDate" value="2006">
+    <input type="text" id="companyList" value="">
 </div>
 <footer>
-    <p>This demo is made by Ling Huang, Wei Xu and Yang Zhang.</p>
+    <p>This demo is made by Ling Huang, Wei Xu, Yang Zhang and Lu Chen.</p>
 </footer>
 <script src="js/jquery-3.1.0.min.js"></script>
 <script src="js/codemirror.js"></script>
 <script src="js/codemirror-cypher.js"></script>
 <script src="js/vendor.js"></script>
 <script src="js/sweet-alert.min.js"></script>
+<script src="js/exeQuery.js"></script>
+<script src="js/line-chart.js"></script>
+<script src="js/expand-node.js"></script>
 <script src="js/neod3.js"></script>
 <script src="js/neod3-visualization.js"></script>
 <script src="js/neo4d3.js"></script>
@@ -215,6 +228,8 @@
 <script src="js/cypher.datatable.js"></script>
 <script src="js/jquery.timelinr-0.9.6.js"></script>
 <script src="js/bootstrap-select.js"></script>
+<script src="//d3js.org/d3.v3.min.js"></script>
+
 <!--<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>-->
 
 <script type="text/javascript">

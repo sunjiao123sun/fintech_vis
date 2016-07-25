@@ -10,7 +10,8 @@ neo.renderers = {
   node: [],
   relationship: []
 };
-
+  //add the linechart
+var linechart = new LineChart();
 neo.utils = {
   copy: function(src) {
     return JSON.parse(JSON.stringify(src));
@@ -221,21 +222,21 @@ NeoD3Geometry = (function() {
         lines.push({
           node: node,
           text: words[i],
-          baseline: (1 + i - words.length / 2) * 10
+          baseline: (1 + i - words.length / 2) * 20
         });
       }
       _results.push(node.caption = lines);
     }
     return _results;
   };
-  
+
   fitCaptionIntoCircle = function(node, style) {
     var candidateLines, candidateWords, captionText, consumedWords, emptyLine, fitOnFixedNumberOfLines, fontFamily, fontSize, lineCount, lineHeight, lines, maxLines, measure, template, words, _i, _ref, _ref1;
     template = style.forNode(node).get("caption");
     captionText = style.interpolate(template, node.id, node.propertyMap);
-    fontFamily = 'sans-serif';
+    fontFamily = 'Georgia';
     fontSize = parseFloat(style.forNode(node).get('font-size'));
-    lineHeight = fontSize;
+    lineHeight = fontSize*2;
     measure = function(text) {
       return neo.utils.measureText(text, fontFamily, fontSize);
     };
@@ -243,7 +244,7 @@ NeoD3Geometry = (function() {
     emptyLine = function(lineCount, iLine) {
       var baseline, constainingHeight, lineWidth;
       baseline = (1 + iLine - lineCount / 2) * lineHeight;
-      constainingHeight = iLine < lineCount / 2 ? baseline - lineHeight : baseline;
+      constainingHeight = iLine < lineCount / 2 ? baseline - lineHeight-5 : baseline+5;
       lineWidth = Math.sqrt(square(node.radius) - square(constainingHeight)) * 2;
       return {
         node: node,
@@ -365,6 +366,7 @@ NeoD3Geometry = (function() {
         startBreak = (shaftLength - relationship.shortCaptionLength) / 2;
         endBreak = shaftLength - startBreak;
         _results.push(relationship.arrowOutline = ['M', 0, shaftRadius, 'L', startBreak, shaftRadius, 'L', startBreak, -shaftRadius, 'L', 0, -shaftRadius, 'Z', 'M', endBreak, shaftRadius, 'L', shaftLength, shaftRadius, 'L', shaftLength, headRadius, 'L', relationship.arrowLength, 0, 'L', shaftLength, -headRadius, 'L', shaftLength, -shaftRadius, 'L', endBreak, -shaftRadius, 'Z'].join(' '));
+        //_results.push(relationship.arrowOutline = ["M" , relationship.source.x , relationship.source.y , "A" , length ,  length , " 0 0 1 " , relationship.target.x , relationship.target.y].join(' '));
       } else {
         _results.push(relationship.arrowOutline = ['M', 0, shaftRadius, 'L', shaftLength, shaftRadius, 'L', shaftLength, headRadius, 'L', relationship.arrowLength, 0, 'L', shaftLength, -headRadius, 'L', shaftLength, -shaftRadius, 'L', 0, -shaftRadius, 'Z'].join(' '));
       }
@@ -544,8 +546,8 @@ neo.layout = (function() {
     _force.init = function(render) {
       var accelerateLayout, d3force, forceLayout, linkDistance;
       forceLayout = {};
-      linkDistance = 160;
-      d3force = d3.layout.force().linkDistance(linkDistance).charge(-1000).gravity(0.1);
+      linkDistance = 230;
+      d3force = d3.layout.force().linkDistance(linkDistance).charge(-1300).gravity(0.1);
       accelerateLayout = function() {
         var d3Tick, maxAnimationFramesPerSecond, maxComputeTime, maxStepsPerTick, now;
         maxStepsPerTick = 100;
@@ -714,8 +716,8 @@ neo.style = (function() {
         'border-color': '#F3BA25',
         'text-color-internal': '#000000'
       }, {
-        color: '#DCDCDC',
-        'border-color': '#D3D3D3',
+        color: '#4356C0',
+        'border-color': '#3445A2',
         'text-color-internal': '#FFFFFF'
       }, {
         color: '#FF6C7C',
@@ -751,7 +753,7 @@ neo.style = (function() {
         'border-width': '2px',
         'text-color-internal': '#000000',
         'caption': '{id}',
-        'font-size': '8px'
+        'font-size': '12px'
       },
       'relationship': {
         'color': '#D4D6D7',
@@ -1167,11 +1169,7 @@ neo.viz = function(el, graph, layout, style) {
       return viz.trigger('nodeClicked', node);
     };
   })(this);
-  onNodeDblClick = (function(_this) {
-    return function(node) {
-      return viz.trigger('nodeDblClicked', node);
-    };
-  })(this);
+
   onRelationshipClick = (function(_this) {
     return function(relationship) {
       return viz.trigger('relationshipClicked', relationship);
@@ -1433,6 +1431,7 @@ neo.utils.measureText = (function() {
 (function() {
   var arrowPath, nodeCaption, nodeOutline, nodeOverlay, noop, relationshipOverlay, relationshipType;
   var showDetails,hideDetails;
+  var expandNode = new ExpandNode();
   noop = function() {};
   nodeOutline = new neo.Renderer({
     onGraphChange: function(selection, viz) {
@@ -1460,18 +1459,19 @@ neo.utils.measureText = (function() {
       });
       showDetails = function (node) {
         var content;
-        content = '<h4 class="text-center">' + node.propertyMap.name + '</span></h4>';
+        content = '<h4 id="company-name" class="text-center">' + node.propertyMap.name + '</span></h4>';
         content += '<hr class="tooltip-hr">';
         content += '<p class="text-center">' + node.propertyMap.country+ '</span></p>';
         $("#detailInfo").html(content);
         $("#detailInfo").show();
+        linechart.update(node.propertyMap);
+        //console.log(typeof(node.propertyMap) == "object" && Object.prototype.toString.call(node.propertyMap).toLowerCase() == "[object object]" && !node.propertyMap.length)
       };
       hideDetails = function () {
         $("#detailInfo").hide();
       };
       circles.on("mouseover", showDetails);//.on("mouseout", hideDetails);
-      circles.on("click",showDetails);
-
+      circles.on("dblclick",expandNode.expand);
       return circles.exit().remove();
     },
     onTick: noop
@@ -1484,9 +1484,9 @@ neo.utils.measureText = (function() {
       });
       text.enter().append('text').attr({
         'text-anchor': 'middle',
-        'font-weight': 'normal',
+        'font-weight': 'lighter',
         'stroke': '#FFFFFF',
-        'stroke-width' : '0'
+        'stroke-width' : '0',
       });
       text.text(function(line) {
         return line.text;

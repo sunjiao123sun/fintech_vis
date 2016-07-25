@@ -3,6 +3,11 @@ svg {
    width:100%;
    height:100%;
 }
+
+.line-chart svg{
+   height: 360px;
+}
+
 .CodeMirror, .CodeMirror-scroll {
   height:auto;
 }
@@ -37,3 +42,4 @@ svg {
    z-index: 100;
    width: 8em;
 }
+

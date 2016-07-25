@@ -61,3 +61,30 @@
     display: inline-block;
     margin:10px;
 }
+
+
+/*line-chart*/
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.x.axis path {
+    display: none;
+}
+
+.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+}
+
+.form-group,.form-control{
+    width:100%;
+}
+
+option{
+    font-size: 20px;
+}

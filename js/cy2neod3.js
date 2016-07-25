@@ -2,8 +2,8 @@ function Cy2NeoD3(config, graphId, tableId, sourceId, execId, urlSource, renderG
     function createEditor() {
 		return CodeMirror.fromTextArea(document.getElementById(sourceId), {
 		  parserfile: ["codemirror-cypher.js"],
-		  path: "scripts",
-		  stylesheet: "styles/codemirror-neo.css",
+		  path: "js",
+		  stylesheet: "css/codemirror-neo.css",
 		  autoMatchParens: true,
 		  lineNumbers: true,
 		  enterMode: "keep",
@@ -52,22 +52,62 @@ function Cy2NeoD3(config, graphId, tableId, sourceId, execId, urlSource, renderG
 
 	function createQuery(company, relation, curDate,sector) {
         //return "MATCH (n)-[r]->(m) WHERE n.start_year <=" + curDate + " and n.end_year>=" + curDate + " and r.type=\"" + relation + "\" RETURN n,r,m";
+        var company=company.split(",");
+        var str="";
         if(relation=="ALL"){
             if(sector == "ALL"){
-                return "MATCH (n)-[r]-(m) WHERE n.name= \""+company+"\" and r.start_year<="+curDate+" and r.end_year>="+curDate+" RETURN n,r,m LIMIT 100";
+                str = "MATCH (n)-[r]-(m) WHERE (";
+                for(var i=0;i<company.length;i++){
+                    if(i===0){
+                        str+="n.name=\""+company[i]+"\"";
+                    }
+                    else{
+                        str+="or n.name=\""+company[i]+"\"";
+                    }
+                }
+                str+=") and r.start_year<="+curDate+" and r.end_year>="+curDate+" RETURN n,r,m LIMIT 100";
             }else{
-                return "MATCH (n:"+sector+")-[r]-(m) WHERE n.name= \""+company+"\" and r.start_year<="+curDate+" and r.end_year>="+curDate+" RETURN n,r,m LIMIT 100";
+                str = "MATCH (n)-[r]-(m:"+sector+") WHERE (";
+                for(var i=0;i<company.length;i++){
+                    if(i===0){
+                        str+="n.name=\""+company[i]+"\"";
+                    }
+                    else{
+                        str+="or n.name=\""+company[i]+"\"";
+                    }
+                }
+                str+=") and r.start_year<="+curDate+" and r.end_year>="+curDate+" RETURN n,r,m LIMIT 100";
             }
         }
         else{
             if(sector == "ALL"){
-                return "MATCH (n)-[r:`"+relation+"`]-(m) WHERE n.name= \""+company+"\" and r.start_year<="+curDate+" and r.end_year>="+curDate+" RETURN n,r,m LIMIT 100"; //"MATCH (n)-[r]->(m) WHERE n.name = \""+company+"\" and r.type=\"" + relation + "\"  RETURN n,r,m";
+                str = "MATCH (n)-[r:`"+relation+"`]-(m) WHERE (";
+                for(var i=0;i<company.length;i++){
+                    if(i===0){
+                        str+="n.name=\""+company[i]+"\"";
+                    }
+                    else{
+                        str+="or n.name=\""+company[i]+"\"";
+                    }
+                }
+                str+=") and r.start_year<="+curDate+" and r.end_year>="+curDate+" RETURN n,r,m LIMIT 100";
             }else{
-                return "MATCH (n:"+sector+")-[r:`"+relation+"`]-(m) WHERE n.name= \""+company+"\" and r.start_year<="+curDate+" and r.end_year>="+curDate+" RETURN n,r,m LIMIT 100"; //"MATCH (n)-[r]->(m) WHERE n.name = \""+company+"\" and r.type=\"" + relation + "\"  RETURN n,r,m";
+                str = "MATCH (n)-[r:`"+relation+"`]-(m:"+sector+") WHERE (";
+                for(var i=0;i<company.length;i++){
+                    if(i===0){
+                        str+="n.name=\""+company[i]+"\"";
+                    }
+                    else{
+                        str+="or n.name=\""+company[i]+"\"";
+                    }
+                }
+                str+=") and r.start_year<="+curDate+" and r.end_year>="+curDate+" RETURN n,r,m LIMIT 100";
             }
-
         }
+        console.log(str);
+        return str;
     }
+
 
     function execute() {
         try {
@@ -79,6 +119,8 @@ function Cy2NeoD3(config, graphId, tableId, sourceId, execId, urlSource, renderG
             console.log("Executing Query", query);
             neo.executeQuery(query, {}, function(err, res) {
                 res = res || {}
+                //$("#res").val("res:"+res.graph.nodes[0].id);
+                //linechart.update(res);
                 var graph = res.graph;
                 if (renderGraph) {
                     if (graph) {
@@ -106,6 +148,8 @@ function Cy2NeoD3(config, graphId, tableId, sourceId, execId, urlSource, renderG
         return false;
     }
 
+    $("#companyList").val($("#company").val());
+
     $("#dates a").click(function(evt) {
         $("#curDate").val($(this).text());
         execute();
@@ -117,10 +161,10 @@ function Cy2NeoD3(config, graphId, tableId, sourceId, execId, urlSource, renderG
 
     $("#company").change(function() {
         execute();
+        $("#companyList").val($("#company").val());
     });
 
     $("#sector").change(function(){
         execute();
-    })
-
+    });
 }

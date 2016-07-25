@@ -2,7 +2,7 @@ function Neod3Renderer() {
 
     var styleContents =
         "node {\
-          diameter: 50px;\
+          diameter: 68px;\
           color: #DFE1E3;\
           border-color: #D4D6D7;\
           border-width: 2px;\
@@ -12,10 +12,10 @@ function Neod3Renderer() {
           font-size: 12px;\
         }\
         relationship {\
-          color: #4356C0;\
+          color: #DCDCDC;\
           shaft-width: 3px;\
           font-size: 9px;\
-          padding: 0px;\
+          padding: 3px;\
           text-color-external: #000000;\
           text-color-internal: #FFFFFF;\
         }\n";
@@ -32,8 +32,8 @@ function Neod3Renderer() {
     var blobSupport = 'Blob' in window;
     var URLSupport = 'URL' in window && 'createObjectURL' in window.URL;
     var msBlobSupport = typeof window.navigator.msSaveOrOpenBlob !== 'undefined';
-    var svgStyling = '<style>\ntext{font-family:sans-serif}\n</style>';
-    var stylingUrl = window.location.hostname === 'www.neo4j.org' ? 'http://gist.neo4j.org/css/neod3' : 'styles/neod3';
+    var svgStyling = '<style>\ntext{font-family: FontAwesome, Helvetica, Arial, sans-serif}\n</style>';
+    var stylingUrl = window.location.hostname === 'www.neo4j.org' ? 'http://gist.neo4j.org/css/neod3' : 'css/neod3';
     if (window.isInternetExplorer) {
         stylingUrl += '-ie.css';
     } else {
