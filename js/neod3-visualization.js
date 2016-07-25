@@ -2,7 +2,7 @@ function Neod3Renderer() {
 
     var styleContents =
         "node {\
-          diameter: 40px;\
+          diameter: 50px;\
           color: #DFE1E3;\
           border-color: #D4D6D7;\
           border-width: 2px;\
@@ -15,13 +15,13 @@ function Neod3Renderer() {
           color: #4356C0;\
           shaft-width: 3px;\
           font-size: 9px;\
-          padding: 3px;\
+          padding: 0px;\
           text-color-external: #000000;\
           text-color-internal: #FFFFFF;\
         }\n";
 
-    var skip = ["id", "start", "end", "source", "target", "labels", "type", "selected","properties"];
-    var prio_props = ["name", "title", "tag", "username", "lastname","caption"];
+    var skip = ["id", "start", "end", "source", "target", "labels", "type", "selected", "properties"];
+    var prio_props = ["name", "title", "tag", "username", "lastname", "caption"];
 
     var serializer = null;
 
@@ -67,7 +67,7 @@ function Neod3Renderer() {
 
             var style = {};
             for (var i = 0; i < nodes.length; i++) {
-                var props= nodes[i].properties = extract_props(nodes[i]);
+                var props = nodes[i].properties = extract_props(nodes[i]);
                 var keys = Object.keys(props);
                 if (label(nodes[i]) !== "" && keys.length > 0) {
                     var selected_keys = prio_props.filter(function (k) {
@@ -77,35 +77,44 @@ function Neod3Renderer() {
                     var selector = "node." + label(nodes[i]);
                     var selectedKey = selected_keys[0];
                     if (typeof(props[selectedKey]) === "string" && props[selectedKey].length > 30) {
-                        props[selectedKey] = props[selectedKey].substring(0,30)+" ...";
+                        props[selectedKey] = props[selectedKey].substring(0, 30) + " ...";
                     }
                     style[selector] = style[selector] || selectedKey;
                 }
             }
             return style;
         }
+
         function style_sheet(styles, styleContents) {
             function format(key) {
-                var item=styles[key];
+                var item = styles[key];
                 return item.selector +
                     " {caption: '{" + item.caption +
                     "}'; color: " + item.color +
                     "; border-color: " + item['border-color'] +
-                    "; text-color-internal: " +  item['text-color-internal'] +
-                    "; text-color-external: " +  item['text-color-external'] +
+                    "; text-color-internal: " + item['text-color-internal'] +
+                    "; text-color-external: " + item['text-color-external'] +
                     "; }"
             }
+
             return styleContents + Object.keys(styles).map(format).join("\n");
         }
-        function create_styles(styleCaptions,  styles) {
+
+        function create_styles(styleCaptions, styles) {
             var colors = neo.style.defaults.colors;
             for (var selector in styleCaptions) {
                 if (!(selector in styles)) {
                     var color = colors[currentColor];
                     currentColor = (currentColor + 1) % colors.length;
                     var textColor = window.isInternetExplorer ? '#000000' : color['text-color-internal'];
-                    var style = {selector:selector, caption:styleCaptions[selector], color:color.color, 
-                         "border-color":color['border-color'], "text-color-internal":textColor,"text-color-external": textColor }
+                    var style = {
+                        selector: selector,
+                        caption: styleCaptions[selector],
+                        color: color.color,
+                        "border-color": color['border-color'],
+                        "text-color-internal": textColor,
+                        "text-color-external": textColor
+                    }
                     styles[selector] = style;
                 }
             }
@@ -118,26 +127,27 @@ function Neod3Renderer() {
         }
 
         function enableZoomHandlers() {
-            renderer.on("wheel.zoom",zoomHandlers.wheel);
-            renderer.on("mousewheel.zoom",zoomHandlers.mousewheel);
-            renderer.on("mousedown.zoom",zoomHandlers.mousedown);
-            renderer.on("DOMMouseScroll.zoom",zoomHandlers.DOMMouseScroll);
-            renderer.on("touchstart.zoom",zoomHandlers.touchstart);
-            renderer.on("touchmove.zoom",zoomHandlers.touchmove);
-            renderer.on("touchend.zoom",zoomHandlers.touchend);
+            renderer.on("wheel.zoom", zoomHandlers.wheel);
+            renderer.on("mousewheel.zoom", zoomHandlers.mousewheel);
+            renderer.on("mousedown.zoom", zoomHandlers.mousedown);
+            renderer.on("DOMMouseScroll.zoom", zoomHandlers.DOMMouseScroll);
+            renderer.on("touchstart.zoom", zoomHandlers.touchstart);
+            renderer.on("touchmove.zoom", zoomHandlers.touchmove);
+            renderer.on("touchend.zoom", zoomHandlers.touchend);
         }
 
         function disableZoomHandlers() {
-            renderer.on("wheel.zoom",null);
-            renderer.on("mousewheel.zoom",null);
+            renderer.on("wheel.zoom", null);
+            renderer.on("mousewheel.zoom", null);
             renderer.on("mousedown.zoom", null);
             renderer.on("DOMMouseScroll.zoom", null);
-            renderer.on("touchstart.zoom",null);
-            renderer.on("touchmove.zoom",null);
-            renderer.on("touchend.zoom",null);
+            renderer.on("touchstart.zoom", null);
+            renderer.on("touchmove.zoom", null);
+            renderer.on("touchend.zoom", null);
         }
 
         function legend(svg, styles) {
+<<<<<<< HEAD:scripts/neod3-visualization.js
           var keys = Object.keys(styles).sort();
           var circles = svg.selectAll('circle.legend').data(keys);
           var r=20;
@@ -185,22 +195,73 @@ function Neod3Renderer() {
           });
 */
           return circles.exit().remove();
+=======
+            var keys = Object.keys(styles).sort();
+            var circles = svg.selectAll('circle.legend').data(keys);
+            var r = 20;
+            var showDetails, hideDetails;
+            circles.enter().append('circle').classed('legend', true).attr({
+                cx: 2 * r,
+                r: r
+            });
+            circles.attr({
+                cy: function (node) {
+                    return (keys.indexOf(node) + 1) * 2.2 * r;
+                },
+                fill: function (node) {
+                    return styles[node]['color'];
+                },
+                stroke: function (node) {
+                    return styles[node]['border-color'];
+                },
+                'stroke-width': function (node) {
+                    return "2px";
+                }
+            });
+            var text = svg.selectAll('text.legend').data(keys);
+            text.enter().append('text').classed('legend', true).attr({
+                'text-anchor': 'left',
+                'font-weight': 'bold',
+                'stroke-width': '0',
+                'stroke-color': 'black',
+                'fill': 'black',
+                'x': 3.2 * r,
+                'font-size': "12px"
+            });
+            text.text(function (node) {
+                var label = styles[node].selector;
+                return label ? label.substring(5) : "";
+            }).attr('y', function (node) {
+                return (keys.indexOf(node) + 1) * 2.2 * r + 6;
+            })
+            /*
+             .attr('stroke', function(node) {
+             return styles[node]['color'];
+             })
+             .attr('fill', function(node) {
+             return styles[node]['text-color-internal'];
+             });
+             */
+            return circles.exit().remove();
+>>>>>>> 908b6e95a250bed8dbada351101cc7c605fbc016:js/neod3-visualization.js
         }
+
         function keyHandler() {
             if (d3.event.altKey || d3.event.shiftKey) {
                 enableZoomHandlers();
             }
             else {
-               disableZoomHandlers();
+                disableZoomHandlers();
             }
         }
 
         var links = visualization.links;
         var nodes = visualization.nodes;
+
         for (var i = 0; i < links.length; i++) {
             links[i].source = links[i].start;
             links[i].target = links[i].end;
-           //  links[i].properties = props(links[i]);
+            //  links[i].properties = props(links[i]);
         }
         var nodeStyles = node_styles(nodes);
         create_styles(nodeStyles, existingStyles);
@@ -213,9 +274,9 @@ function Neod3Renderer() {
             .width($container.width()).height($container.height()).on('nodeClicked', dummyFunc).on('relationshipClicked', dummyFunc).on('nodeDblClicked', dummyFunc);
         var svg = d3.select("#" + id).append("svg");
         var renderer = svg.data([graphModel]);
-        legend(svg,existingStyles);
+        legend(svg, existingStyles);
         var zoomHandlers = {};
-        var zoomBehavior = d3.behavior.zoom().on("zoom", applyZoom).scaleExtent([0.2, 8]);
+        var zoomBehavior = d3.behavior.zoom().on("zoom", applyZoom).scaleExtent([1, 8]);
 
         renderer.call(graphView);
         renderer.call(zoomBehavior);
@@ -259,12 +320,12 @@ function Neod3Renderer() {
         function getFunctions() {
             var funcs = {};
             if (blobSupport && (URLSupport || msBlobSupport)) {
-                funcs['icon-download-alt'] = {'title': 'Save as SVG', 'func':saveToSvg};
+                funcs['icon-download-alt'] = {'title': 'Save as SVG', 'func': saveToSvg};
             }
             return funcs;
         }
 
-        return  {
+        return {
             'subscriptions': {
                 'expand': refresh,
                 'contract': refresh,

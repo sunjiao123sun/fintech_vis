@@ -1,6 +1,7 @@
 <html>
 
 <head>
+<<<<<<< HEAD
     <link rel="stylesheet" href="css/codemirror.css">
     <link rel="stylesheet" href="css/codemirror-neo.css">
     <link rel="stylesheet" href="css/cy2neo.css">
@@ -11,18 +12,43 @@
     <!-- bootstrap-->
     <link rel="stylesheet" href="css/sweet-alert.css">
     <link rel="stylesheet" href="css/gh-fork-ribbon.css">
+=======
+    <!-- bootstrap-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/codemirror.css">
+    <link rel="stylesheet" href="css/codemirror-neo.css">
+    <link rel="stylesheet" href="css/datatable.css">
+    <!--<link rel="stylesheet" href="css/vendor.css">-->
+
+    <link rel="stylesheet" href="css/sweet-alert.css">
+    <link rel="stylesheet" href="css/gh-fork-ribbon.css">
+
+    <link rel="stylesheet" href="css/cy2neo.css">
+    <link rel="stylesheet" href="css/neod3.css">
+    <link rel="stylesheet" href="css/style.css" media="screen">
+>>>>>>> 908b6e95a250bed8dbada351101cc7c605fbc016
     <title>Company Networks</title>
-    
+    <style>
+        .form-control{
+            height: 40px;
+            line-height: 2;
+        }
+        #left_block{
+            padding: 0;
+        }
+    </style>
 </head>
 
 <body>
+<div style="display:none">
+    <input class="form-control" type="url" value="http://10.2.2.75:7474" id="neo4jUrl"/>
+
     <div>
-        <input class="form-control" type="url" value="http://10.2.2.75:7474" id="neo4jUrl" />
-        <div >
-        <textarea name="cypher" id="cypher" rows="4" cols="120" data-lang="cypher" class="code form-control" >
+        <textarea name="cypher" id="cypher" rows="4" cols="120" data-lang="cypher" class="code form-control">
             MATCH (n)-[r]-(m) RETURN n,r,m LIMIT 50;
         </textarea>
         <a href="#" title="Execute" id="execute"><i class="fa fa-play-circle-o"></i></a></div>
+<<<<<<< HEAD
     </div>
 
     <div id="timeline">
@@ -51,47 +77,147 @@
         <option value="YAHOO INC">Yahoo</option>
     </select>
     </h4>
+=======
+</div>
+
+<div id="timeline">
+    <ul id="dates">
+        <li><a href="#" id="2006">2006</a></li>
+        <li><a href="#" id="2007">2007</a></li>
+        <li><a href="#" id="2008">2008</a></li>
+        <li><a href="#" id="2009">2009</a></li>
+        <li><a href="#" id="2010">2010</a></li>
+        <li><a href="#" id="2011">2011</a></li>
+        <li><a href="#" id="2012">2012</a></li>
+        <li><a href="#" id="2013">2013</a></li>
+        <li><a href="#" id="2014">2014</a></li>
+        <li><a href="#" id="2015">2015</a></li>
+        <li><a href="#" id="2016">2016</a></li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="col-md-2 panel panel-default" id="left_block">
+        <div class="panel-heading">
+            <h3 class="panel-title text-center">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> &nbsp;SELECTOR
+            </h3>
+        </div>
+        <div class="panel-body center-block">
+            <!--<form class="form-inline">-->
+                <!--<div class="form-group">-->
+                    <!--<label class="col-md-1 control-label" for="lunch">Lunch:</label>-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                    <!--<select id="lunch" class="selectpicker" data-live-search="true" title="Please select a lunch ...">-->
+                        <!--<option>Baby Back Ribs</option>-->
+                        <!--<option>A really really long option made to illustrate an issue with the live search in an inline form</option>-->
+                        <!--<option>Hot Dog, Fries and a Soda</option>-->
+                        <!--<option>Burger, Shake and a Smile</option>-->
+                        <!--<option>Sugar, Spice and all things nice</option>-->
+                        <!--<option>Baby Back Ribs</option>-->
+                        <!--<option>A really really long option made to illustrate an issue with the live search in an inline form</option>-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</form>-->
+            <hr>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label class="control-label" for="relationship">filter by relationship:</label>
+                </div>
+                <div class="form-group">
+                    <select name="relationship" id="relationship" class="form-control dropdown-toggle">
+                        <option value="ALL" selected>ALL</option>
+                        <option value="COMPETITOR">COMPETITOR</option>
+                        <option value="SUPPLIER">SUPPLIER</option>
+                        <option value="CUSTOMER">CUSTOMER</option>
+                        <option value="PARTNER-DISTRIB">PARTNER-DISTRIB</option>
+                        <option value="PARTNER-EINVEST">PARTNER-EINVEST</option>
+                        <option value="PARTNER-INTPROD">PARTNER-INTPROD</option>
+                        <option value="PARTNER-INVESTO">PARTNER-INVESTO</option>
+                        <option value="PARTNER-LICENIN">PARTNER-LICENIN</option>
+                        <option value="PARTNER-LICENOT">PARTNER-LICENOT</option>
+                        <option value="PARTNER-JVENTUR">PARTNER-JVENTUR</option>
+                        <option value="PARTNER-MANUFAC">PARTNER-MANUFAC</option>
+                        <option value="PARTNER-MARKTING">PARTNER-MARKTING</option>
+                        <option value="PARTNER-NA">PARTNER-NA</option>
+                        <option value="PARTNER-RESCOLB">PARTNER-RESCOLB</option>
+                        <option value="PARTNER-TECHNGY">PARTNER-TECHNGY</option>
+                    </select>
+                </div>
+            </form>
+            <hr>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label class="control-label" for="company">company:</label>
+                </div>
+                <div class="form-group">
+                    <select id="company" class="form-control">
+                        <option value="APPLE INC">Apple</option>
+                        <option value="INTERNATIONAL BUSINESS MACHINES">IBM</option>
+                        <option value="ALPHABET INC">Google</option>
+                        ]
+                        <option value="AMAZON COM INC">Amazon</option>
+                        <option value="YAHOO INC">Yahoo</option>
+                    </select>
+                </div>
+            </form>
+            <hr>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label class="control-label" for="sector">sector:</label>
+                </div>
+                <div class="form-group">
+                    <select id="sector" class="form-control">
+                        <option value="ALL">ALL</option>
+                        <option value="Category">Category</option>
+                        <option value="ConsumerDiscret">ConsumerDiscret</option>
+                        <option value="InformationTech">InformationTech</option>
+                        ]
+                        <option value="AMAZON COM INC">Amazon</option>
+                        <option value="YAHOO INC">Yahoo</option>
+                    </select>
+                </div>
+            </form>
+            <!--<div class="dropdown">-->
+                <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+                    <!--Dropdown-->
+                    <!--<span class="caret"></span>-->
+                <!--</button>-->
+                <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+                    <!--<li><a href="#">Action</a></li>-->
+                    <!--<li><a href="#">Another action</a></li>-->
+                    <!--<li><a href="#">Something else here</a></li>-->
+                    <!--<li><a href="#">Separated link</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+
+        </div>
+>>>>>>> 908b6e95a250bed8dbada351101cc7c605fbc016
+
 
     </div>
-    <div class="selectBox">
-    <h4>filter by relationship:<select name="relationship" id="relationship">
-        <option value="ALL" selected>ALL</option>
-        <option value="COMPETITOR">COMPETITOR</option>
-        <option value="SUPPLIER">SUPPLIER</option>
-        <option value="CUSTOMER">CUSTOMER</option>
-        <option value="PARTNER-DISTRIB">PARTNER-DISTRIB</option>
-        <option value="PARTNER-EINVEST">PARTNER-EINVEST</option>
-        <option value="PARTNER-INTPROD">PARTNER-INTPROD</option>
-        <option value="PARTNER-INVESTO">PARTNER-INVESTO</option>
-        <option value="PARTNER-LICENIN">PARTNER-LICENIN</option>
-        <option value="PARTNER-LICENOT">PARTNER-LICENOT</option>
-        <option value="PARTNER-JVENTUR">PARTNER-JVENTUR</option>
-        <option value="PARTNER-MANUFAC">PARTNER-MANUFAC</option>
-        <option value="PARTNER-MARKTING">PARTNER-MARKTING</option>
-        <option value="PARTNER-NA">PARTNER-NA</option>
-        <option value="PARTNER-RESCOLB">PARTNER-RESCOLB</option>
-        <option value="PARTNER-TECHNGY">PARTNER-TECHNGY</option>
-    </select>
-    </h4>
-
-    </div>
-    <div role="tabpanel">
+    <div role="tabpanel" class="col-md-7">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#graph" aria-controls="home" role="tab" data-toggle="tab">Graph</a></li>
+            <li role="presentation" class="active"><a href="#graph" aria-controls="home" role="tab" data-toggle="tab">Graph</a>
+            </li>
             <li role="presentation"><a href="#table" aria-controls="table" role="tab" data-toggle="tab">Table</a></li>
         </ul>
         <!-- Tab panes -->
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="graph">
+            <div role="tabpanel" class="tab-pane active">
                 <div class="tab-pane active" id="graph">&nbsp;</div>
             </div>
             <div role="tabpanel" class="tab-pane" id="table">
-                <div id="datatable"></div>
+                <div id="datatable">
+
+                </div>
             </div>
         </div>
     </div>
 
+<<<<<<< HEAD
     <div style="display:none">
         <input type="text" id="curDate" value="2006">
     </div>
@@ -112,22 +238,69 @@
     <script src="js/jquery.timelinr-0.9.6.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
+=======
+    <div class="col-md-3">
+        <div class="panel panel-default" id="right_block">
+            <div class="panel-heading">
+                <h3 class="panel-title text-center">
+                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> &nbsp;DETAIL INFORMATION
+                </h3>
+            </div>
+            <div class="panel-body" id="detailInfo">
+                &nbsp;
+                <hr>
+                &nbsp;
+            </div>
+        </div>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="type your question..." style="height: 37.8px">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" >Submit</button>
+              </span>
+        </div>
+        <!-- /input-group -->
+    </div>
+</div>
+
+<div style="display:none">
+    <input type="text" id="curDate" value="2006">
+</div>
+<footer>
+    <p>This demo is made by Ling Huang, Wei Xu and Yang Zhang.</p>
+</footer>
+<script src="js/jquery-3.1.0.min.js"></script>
+<script src="js/codemirror.js"></script>
+<script src="js/codemirror-cypher.js"></script>
+<script src="js/vendor.js"></script>
+<script src="js/sweet-alert.min.js"></script>
+<script src="js/neod3.js"></script>
+<script src="js/neod3-visualization.js"></script>
+<script src="js/neo4d3.js"></script>
+<script src="js/cy2neod3.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/cypher.datatable.js"></script>
+<script src="js/jquery.timelinr-0.9.6.js"></script>
+<script src="js/bootstrap-select.js"></script>
+<!--<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>-->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+>>>>>>> 908b6e95a250bed8dbada351101cc7c605fbc016
         //todo dynamic configuration
-        $(function() {
+        $(function () {
             $().timelinr({
                 arrowKeys: 'true',
             })
         });
         var config = {}
-        var connection = function() {
+        var connection = function () {
             return {
                 url: $("#neo4jUrl").val(),
             };
         }
         new Cy2NeoD3(config, "graph", "datatable", "cypher", "execute", connection, true);
-        
     });
-    </script>
+</script>
 </body>
 
 </html>
