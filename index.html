@@ -1,7 +1,22 @@
 <html>
 
 <head>
+<<<<<<< HEAD
     <link rel="shortcut icon" href="images/favicon.ico" >
+=======
+<<<<<<< HEAD
+    <link rel="stylesheet" href="css/codemirror.css">
+    <link rel="stylesheet" href="css/codemirror-neo.css">
+    <link rel="stylesheet" href="css/cy2neo.css">
+    <link rel="stylesheet" href="css/neod3.css">
+    <link rel="stylesheet" href="css/datatable.css">
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/style.css" media="screen" />
+    <!-- bootstrap-->
+    <link rel="stylesheet" href="css/sweet-alert.css">
+    <link rel="stylesheet" href="css/gh-fork-ribbon.css">
+=======
+>>>>>>> f4eee656548e3438d284c3da7d0968cff93cbd55
     <!-- bootstrap-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/codemirror.css">
@@ -15,6 +30,7 @@
     <link rel="stylesheet" href="css/cy2neo.css">
     <link rel="stylesheet" href="css/neod3.css">
     <link rel="stylesheet" href="css/style.css" media="screen">
+>>>>>>> 908b6e95a250bed8dbada351101cc7c605fbc016
     <title>Company Networks</title>
     <style>
         .form-control{
@@ -36,6 +52,36 @@
             MATCH (n)-[r]-(m) RETURN n,r,m LIMIT 50;
         </textarea>
         <a href="#" title="Execute" id="execute"><i class="fa fa-play-circle-o"></i></a></div>
+<<<<<<< HEAD
+    </div>
+
+    <div id="timeline">
+        <ul id="dates">
+            <li><a href="#" id="2006">2006</a></li>
+            <li><a href="#" id="2007">2007</a></li>
+            <li><a href="#" id="2008">2008</a></li>
+            <li><a href="#" id="2009">2009</a></li>
+            <li><a href="#" id="2010">2010</a></li>
+            <li><a href="#" id="2011">2011</a></li>
+            <li><a href="#" id="2012">2012</a></li>
+            <li><a href="#" id="2013">2013</a></li>
+            <li><a href="#" id="2014">2014</a></li>
+            <li><a href="#" id="2015">2015</a></li>
+            <li><a href="#" id="2016">2016</a></li>
+        </ul>
+    </div>
+
+    <div class="selectBox">
+    <h4>company:
+        <select id="company">
+        <option value="APPLE INC">Apple</option>
+        <option value="INTERNATIONAL BUSINESS MACHINES">IBM</option>
+        <option value="ALPHABET INC">Google</option>]
+        <option value="AMAZON COM INC">Amazon</option>
+        <option value="YAHOO INC">Yahoo</option>
+    </select>
+    </h4>
+=======
 </div>
 
 <div id="timeline">
@@ -162,6 +208,7 @@
             <!--</div>-->
 
         </div>
+>>>>>>> 908b6e95a250bed8dbada351101cc7c605fbc016
 
 
     </div>
@@ -185,6 +232,28 @@
         </div>
     </div>
 
+<<<<<<< HEAD
+    <div style="display:none">
+        <input type="text" id="curDate" value="2006">
+    </div>
+    <footer>
+        <p>This demo is made by Ling Huang, Wei Xu and Yang Zhang.</p>
+    </footer>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/codemirror.js"></script>
+    <script src="js/codemirror-cypher.js"></script>
+    <script src="js/vendor.js"></script>
+    <script src="js/sweet-alert.min.js"></script>
+    <script src="js/neod3.js"></script>
+    <script src="js/neod3-visualization.js"></script>
+    <script src="js/neo4d3.js"></script>
+    <script src="js/cy2neod3.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/cypher.datatable.js"></script>
+    <script src="js/jquery.timelinr-0.9.6.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+=======
     <div class="col-md-3">
         <div class="panel panel-default" id="right_block">
             <div class="panel-heading">
@@ -234,6 +303,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+>>>>>>> 908b6e95a250bed8dbada351101cc7c605fbc016
         //todo dynamic configuration
         $(function () {
             $().timelinr({

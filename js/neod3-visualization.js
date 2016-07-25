@@ -147,6 +147,55 @@ function Neod3Renderer() {
         }
 
         function legend(svg, styles) {
+<<<<<<< HEAD:scripts/neod3-visualization.js
+          var keys = Object.keys(styles).sort();
+          var circles = svg.selectAll('circle.legend').data(keys);
+          var r=20;
+          circles.enter().append('circle').classed('legend', true).attr({
+            cx: 2*r,
+            r : r
+          });
+          circles.attr({
+            cy: function(node) {
+              return (keys.indexOf(node)+1)*2.2*r;
+            },
+            fill: function(node) {
+              return styles[node]['color'];
+            },
+            stroke: function(node) {
+              return styles[node]['border-color'];
+            },
+            'stroke-width': function(node) {
+              return "2px";
+            }
+          })
+
+          var text = svg.selectAll('text.legend').data(keys);
+          text.enter().append('text').classed('legend',true).attr({
+            'text-anchor': 'left',
+            'font-weight': 'bold',
+            'stroke-width' : '0',
+            'stroke-color' : 'black',
+            'fill' : 'black',
+            'x' : 3.2*r,
+            'font-size' : "12px"
+          });
+          text.text(function(node) {
+            var label = styles[node].selector;
+            return label ? label.substring(5) : "";
+          }).attr('y', function(node) {
+              return (keys.indexOf(node)+1)*2.2*r+6;
+          })
+/*
+          .attr('stroke', function(node) {
+            return styles[node]['color'];
+          })
+         .attr('fill', function(node) {
+              return styles[node]['text-color-internal'];
+          });
+*/
+          return circles.exit().remove();
+=======
             var keys = Object.keys(styles).sort();
             var circles = svg.selectAll('circle.legend').data(keys);
             var r = 20;
@@ -194,6 +243,7 @@ function Neod3Renderer() {
              });
              */
             return circles.exit().remove();
+>>>>>>> 908b6e95a250bed8dbada351101cc7c605fbc016:js/neod3-visualization.js
         }
 
         function keyHandler() {
