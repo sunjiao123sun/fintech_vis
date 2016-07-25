@@ -159,7 +159,7 @@ function Neod3Renderer() {
               return "2px";
             }
           })
-              .on()
+
           var text = svg.selectAll('text.legend').data(keys);
           text.enter().append('text').classed('legend',true).attr({
             'text-anchor': 'left',
@@ -218,7 +218,7 @@ function Neod3Renderer() {
         var zoomBehavior = d3.behavior.zoom().on("zoom", applyZoom).scaleExtent([0.2, 8]);
 
         renderer.call(graphView);
-        //renderer.call(zoomBehavior);
+        renderer.call(zoomBehavior);
 
         zoomHandlers.wheel = renderer.on("wheel.zoom");
         zoomHandlers.mousewheel = renderer.on("mousewheel.zoom");

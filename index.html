@@ -1,16 +1,16 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="styles/codemirror.css">
-    <link rel="stylesheet" href="styles/codemirror-neo.css">
-    <link rel="stylesheet" href="styles/cy2neo.css">
-    <link rel="stylesheet" href="styles/neod3.css">
-    <link rel="stylesheet" href="styles/datatable.css">
-    <link rel="stylesheet" href="styles/vendor.css">
-    <link rel="stylesheet" href="styles/style.css" media="screen" />
+    <link rel="stylesheet" href="css/codemirror.css">
+    <link rel="stylesheet" href="css/codemirror-neo.css">
+    <link rel="stylesheet" href="css/cy2neo.css">
+    <link rel="stylesheet" href="css/neod3.css">
+    <link rel="stylesheet" href="css/datatable.css">
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/style.css" media="screen" />
     <!-- bootstrap-->
-    <link rel="stylesheet" href="styles/sweet-alert.css">
-    <link rel="stylesheet" href="styles/gh-fork-ribbon.css">
+    <link rel="stylesheet" href="css/sweet-alert.css">
+    <link rel="stylesheet" href="css/gh-fork-ribbon.css">
     <title>Company Networks</title>
     
 </head>
@@ -24,6 +24,23 @@
         </textarea>
         <a href="#" title="Execute" id="execute"><i class="fa fa-play-circle-o"></i></a></div>
     </div>
+
+    <div id="timeline">
+        <ul id="dates">
+            <li><a href="#" id="2006">2006</a></li>
+            <li><a href="#" id="2007">2007</a></li>
+            <li><a href="#" id="2008">2008</a></li>
+            <li><a href="#" id="2009">2009</a></li>
+            <li><a href="#" id="2010">2010</a></li>
+            <li><a href="#" id="2011">2011</a></li>
+            <li><a href="#" id="2012">2012</a></li>
+            <li><a href="#" id="2013">2013</a></li>
+            <li><a href="#" id="2014">2014</a></li>
+            <li><a href="#" id="2015">2015</a></li>
+            <li><a href="#" id="2016">2016</a></li>
+        </ul>
+    </div>
+
     <div class="selectBox">
     <h4>company:
         <select id="company">
@@ -75,39 +92,24 @@
         </div>
     </div>
 
-    <div id="timeline">
-        <ul id="dates">
-            <li><a href="#" id="2006">2006</a></li>
-            <li><a href="#" id="2007">2007</a></li>
-            <li><a href="#" id="2008">2008</a></li>
-            <li><a href="#" id="2009">2009</a></li>
-            <li><a href="#" id="2010">2010</a></li>
-            <li><a href="#" id="2011">2011</a></li>
-            <li><a href="#" id="2012">2012</a></li>
-            <li><a href="#" id="2013">2013</a></li>
-            <li><a href="#" id="2014">2014</a></li>
-            <li><a href="#" id="2015">2015</a></li>
-            <li><a href="#" id="2016">2016</a></li>
-        </ul>
-    </div>
     <div style="display:none">
         <input type="text" id="curDate" value="2006">
     </div>
     <footer>
         <p>This demo is made by Ling Huang, Wei Xu and Yang Zhang.</p>
     </footer>
-    <script src="scripts/jquery.min.js"></script>   
-    <script src="scripts/codemirror.js"></script>
-    <script src="scripts/codemirror-cypher.js"></script>
-    <script src="scripts/vendor.js"></script>
-    <script src="scripts/sweet-alert.min.js"></script>
-    <script src="scripts/neod3.js"></script>
-    <script src="scripts/neod3-visualization.js"></script>
-    <script src="scripts/neo4d3.js"></script>
-    <script src="scripts/cy2neod3.js"></script>
-    <script src="scripts/jquery.dataTables.min.js"></script>
-    <script src="scripts/cypher.datatable.js"></script>
-    <script src="scripts/jquery.timelinr-0.9.6.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/codemirror.js"></script>
+    <script src="js/codemirror-cypher.js"></script>
+    <script src="js/vendor.js"></script>
+    <script src="js/sweet-alert.min.js"></script>
+    <script src="js/neod3.js"></script>
+    <script src="js/neod3-visualization.js"></script>
+    <script src="js/neo4d3.js"></script>
+    <script src="js/cy2neod3.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/cypher.datatable.js"></script>
+    <script src="js/jquery.timelinr-0.9.6.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
         //todo dynamic configuration
