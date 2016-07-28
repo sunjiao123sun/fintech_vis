@@ -73,7 +73,9 @@ function LineChart() {
                 svg.append("g")
                     .attr("class", "x axis")
                     .attr("transform", "translate(0," + height + ")")
-                    .call(xAxis);
+                    .call(xAxis)
+                    .selectAll("text")
+                    .attr("transform","rotate(45)");
 
                 svg.append("g")
                     .attr("class", "y axis")

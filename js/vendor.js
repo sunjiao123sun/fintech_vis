@@ -5017,7 +5017,7 @@ if (function(a, b) { "object" == typeof module && "object" == typeof module.expo
             r = q - p,
             s = (r || Math.log(i / f)) / Gh;
         return c.duration = 1e3 * s, c }, Wg.behavior.zoom = function() {
-        function a(a) { a.on(B, j).on(Lh + ".zoom", l).on(C, m).on("dblclick.zoom", n).on(E, k) }
+        function a(a) { a.on(B, j).on(Lh + ".zoom", l).on(C, m).on("dblclick.zoom", 0).on(E, k) }
 
         function b(a) {
             return [(a[0] - y.x) / y.k, (a[1] - y.y) / y.k] }

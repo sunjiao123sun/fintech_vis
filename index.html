@@ -25,6 +25,9 @@
         #left_block{
             padding: 0;
         }
+        text{
+            font-size:8px;
+        }
     </style>
 </head>
 
@@ -56,31 +59,18 @@
     </ul>
 </div>
 
+
+
 <div class="row">
+
     <div class="col-md-2 panel panel-default" id="left_block">
         <div class="panel-heading">
             <h3 class="panel-title text-center">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span> &nbsp;SELECTOR
             </h3>
         </div>
+
         <div class="panel-body center-block">
-            <!--<form class="form-inline">-->
-                <!--<div class="form-group">-->
-                    <!--<label class="col-md-1 control-label" for="lunch">Lunch:</label>-->
-                <!--</div>-->
-                <!--<div class="form-group">-->
-                    <!--<select id="lunch" class="selectpicker" data-live-search="true" title="Please select a lunch ...">-->
-                        <!--<option>Baby Back Ribs</option>-->
-                        <!--<option>A really really long option made to illustrate an issue with the live search in an inline form</option>-->
-                        <!--<option>Hot Dog, Fries and a Soda</option>-->
-                        <!--<option>Burger, Shake and a Smile</option>-->
-                        <!--<option>Sugar, Spice and all things nice</option>-->
-                        <!--<option>Baby Back Ribs</option>-->
-                        <!--<option>A really really long option made to illustrate an issue with the live search in an inline form</option>-->
-                    <!--</select>-->
-                <!--</div>-->
-            <!--</form>-->
-            <hr>
             <form class="form-inline">
                 <div class="form-group">
                     <label class="control-label" for="relationship">filter by relationship:</label>
@@ -143,38 +133,24 @@
                     </select>
                 </div>
             </form>
-            <hr>
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="type your question...">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button" >Submit</button>
-              </span>
-            </div>
-            <!--<div class="dropdown">-->
-                <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
-                    <!--Dropdown-->
-                    <!--<span class="caret"></span>-->
-                <!--</button>-->
-                <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
-                    <!--<li><a href="#">Action</a></li>-->
-                    <!--<li><a href="#">Another action</a></li>-->
-                    <!--<li><a href="#">Something else here</a></li>-->
-                    <!--<li><a href="#">Separated link</a></li>-->
-                <!--</ul>-->
-            <!--</div>-->
-
         </div>
-
-
     </div>
+
     <div role="tabpanel" class="col-md-7">
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#graph" aria-controls="home" role="tab" data-toggle="tab">Graph</a>
-            </li>
-            <!--<li role="presentation"><a href="#table" aria-controls="table" role="tab" data-toggle="tab">Table</a></li>-->
-        </ul>
+        <!--<ul class="nav nav-tabs" role="tablist">-->
+            <!--<li role="presentation" class="active"><a href="#graph" aria-controls="home" role="tab" data-toggle="tab">Graph</a>-->
+            <!--</li>-->
+        <!--</ul>-->
         <!-- Tab panes -->
+        <div class="question-box">
+            <div class="input-group col-md-8 col-md-offset-2">
+                <input type="text" class="form-control" placeholder="type your question...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" >Submit</button>
+                  </span>
+            </div>
+        </div>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active">
                 <div class="tab-pane active" id="graph">&nbsp;</div>
@@ -207,14 +183,15 @@
     </div>
 </div>
 
-<div >
+<div style="display: none">
     <input type="text" id="curDate" value="2006">
     <input type="text" id="companyList" value="">
 </div>
 <footer>
-    <p>This demo is made by Ling Huang, Wei Xu, Yang Zhang and Lu Chen.</p>
+    <p class="text-center">This demo is made by Ling Huang, Wei Xu and Yang Zhang.</p>
 </footer>
 <script src="js/jquery-3.1.0.min.js"></script>
+<script src="js/d3.v3.min.js"></script>
 <script src="js/codemirror.js"></script>
 <script src="js/codemirror-cypher.js"></script>
 <script src="js/vendor.js"></script>
@@ -230,7 +207,7 @@
 <script src="js/cypher.datatable.js"></script>
 <script src="js/jquery.timelinr-0.9.6.js"></script>
 <script src="js/bootstrap-select.js"></script>
-<script src="//d3js.org/d3.v3.min.js"></script>
+
 
 <!--<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>-->
 

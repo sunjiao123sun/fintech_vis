@@ -9,12 +9,12 @@ function Neod3Renderer() {
           text-color-internal: #000000;\
           text-color-external: #000000;\
           caption: '{name}';\
-          font-size: 12px;\
+          font-size: 8px;\
         }\
         relationship {\
           color: #DCDCDC;\
           shaft-width: 3px;\
-          font-size: 9px;\
+          font-size: 8px;\
           padding: 3px;\
           text-color-external: #000000;\
           text-color-internal: #FFFFFF;\
@@ -152,7 +152,7 @@ function Neod3Renderer() {
           var r=20;
           circles.enter().append('circle').classed('legend', true).attr({
             cx: 2*r,
-            r : r
+            r : 0.5*r
           });
           circles.attr({
             cy: function(node) {
@@ -184,7 +184,7 @@ function Neod3Renderer() {
             return label ? label.substring(5) : "";
           }).attr('y', function(node) {
               return (keys.indexOf(node)+1)*2.2*r+6;
-          })
+          });
 /*
           .attr('stroke', function(node) {
             return styles[node]['color'];

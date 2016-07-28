@@ -16,8 +16,10 @@ function ExpandNode() {
                 var exe = new ExeQuery();
                 exe.exeQuery();
             }
-            else{
-                companyList.splice(index,1);
+            else if(index === 0) {
+            }
+            else {
+                companyList.splice(index, 1);
                 var str = companyList.join(",");
                 $("#companyList").val(str);
                 console.log(companyList);

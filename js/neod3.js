@@ -11,7 +11,7 @@ neo.renderers = {
   relationship: []
 };
   //add the linechart
-var linechart = new LineChart();
+  var linechart = new LineChart();
 neo.utils = {
   copy: function(src) {
     return JSON.parse(JSON.stringify(src));
@@ -546,8 +546,8 @@ neo.layout = (function() {
     _force.init = function(render) {
       var accelerateLayout, d3force, forceLayout, linkDistance;
       forceLayout = {};
-      linkDistance = 230;
-      d3force = d3.layout.force().linkDistance(linkDistance).charge(-1300).gravity(0.1);
+      linkDistance = 180;
+      d3force = d3.layout.force().linkDistance(linkDistance).charge(-1100).gravity(0.1);
       accelerateLayout = function() {
         var d3Tick, maxAnimationFramesPerSecond, maxComputeTime, maxStepsPerTick, now;
         maxStepsPerTick = 100;
@@ -753,7 +753,7 @@ neo.style = (function() {
         'border-width': '2px',
         'text-color-internal': '#000000',
         'caption': '{id}',
-        'font-size': '12px'
+        'font-size': '8px'
       },
       'relationship': {
         'color': '#D4D6D7',
