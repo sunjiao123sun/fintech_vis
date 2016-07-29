@@ -1179,7 +1179,9 @@ neo.viz = function(el, graph, layout, style) {
     var nodeGroups, relationshipGroups, renderer, _i, _j, _len, _len1, _ref, _ref1, _results;
     geometry.onTick(graph);
     nodeGroups = el.selectAll("g.node").attr("transform", function(node) {
-      return "translate(" + node.x + "," + node.y + ")";
+      return "translate(" + Math.max(node.radius, Math.min($("svg").width() - node.radius, node.x)) + "," + Math.max(node.radius, Math.min($("svg").height() - node.radius, node.y)) + ")";
+
+      //return "translate(" + node.x + "," + node.y + ")";
     });
     _ref = neo.renderers.node;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -1231,6 +1233,7 @@ neo.viz = function(el, graph, layout, style) {
     nodeGroups = el.select("g.layer.nodes").selectAll("g.node").data(nodes, function(d) {
       return d.id;
     });
+
     nodeGroups.enter().append("g").attr("class", "node").call(force.drag).call(clickHandler);
     _ref1 = neo.renderers.node;
     for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {

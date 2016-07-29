@@ -222,7 +222,7 @@ function Neod3Renderer() {
         var graphView = neo.graphView()
             .style(styleSheet)
             .width($container.width()).height($container.height()).on('nodeClicked', dummyFunc).on('relationshipClicked', dummyFunc).on('nodeDblClicked', dummyFunc);
-        var svg = d3.select("#" + id).append("svg");
+        var svg = d3.select("#" + id).append("svg").attr("height","600px").attr("width","600px").attr("style","overflow:scroll");
         var renderer = svg.data([graphModel]);
         legend(svg, existingStyles);
         var zoomHandlers = {};
