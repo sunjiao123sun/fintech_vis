@@ -33,7 +33,7 @@
 
 <body>
 <div style="display:none">
-    <input class="form-control" type="url" value="http://10.2.2.75:7474" id="neo4jUrl"/>
+    <input class="form-control" type="url" value="http://10.1.0.196:7474" id="neo4jUrl"/>
 
     <div>
         <textarea name="cypher" id="cypher" rows="4" cols="120" data-lang="cypher" class="code form-control">
@@ -145,15 +145,17 @@
         <!-- Tab panes -->
         <div class="question-box">
             <div class="input-group col-md-8 col-md-offset-2">
-                <input type="text" class="form-control" placeholder="type your question...">
-                  <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" >Submit</button>
-                  </span>
+                <form action="......">
+                    <input type="text" class="form-control" placeholder="type your question...">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit" >Submit</button>
+                      </span>
+                </form>
             </div>
         </div>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active">
-                <div class="tab-pane active" id="graph" style="overflow: scroll">&nbsp;</div>
+                <div class="tab-pane active" id="graph" style="overflow: auto">&nbsp;</div>
             </div>
             <div role="tabpanel" class="tab-pane" id="table">
                 <div id="datatable">
@@ -222,7 +224,7 @@
         var config = {}
         var connection = function () {
             return {
-                url: $("#neo4jUrl").val(),
+                url: "http://10.1.0.196:7474",
             };
         }
         new Cy2NeoD3(config, "graph", "datatable", "cypher", "execute", connection, true);

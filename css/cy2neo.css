@@ -7,7 +7,7 @@ svg {
 }
 
 .line-chart svg{
-   height: 360px;
+   height: 50%;
 }
 
 .CodeMirror, .CodeMirror-scroll {
