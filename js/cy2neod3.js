@@ -167,4 +167,33 @@ function Cy2NeoD3(config, graphId, tableId, sourceId, execId, urlSource, renderG
     $("#sector").change(function(){
         execute();
     });
+
+    var availableTags = [
+        "ActionScript",
+        "AppleScript",
+        "Asp",
+        "BASIC",
+        "C",
+        "C++",
+        "Clojure",
+        "COBOL",
+        "ColdFusion",
+        "Erlang",
+        "Fortran",
+        "Groovy",
+        "Haskell",
+        "Java",
+        "JavaScript",
+        "Lisp",
+        "Perl",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Scheme",
+        "Strongman"
+    ];
+    $( "#autocomplete" ).autocomplete({
+        source: availableTags
+    });
 }
