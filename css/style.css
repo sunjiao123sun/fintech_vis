@@ -81,7 +81,7 @@
     stroke-width: 1.5px;
 }
 
-.form-group,.form-control{
+#left_block .form-group{
     width:100%;
 }
 
@@ -97,4 +97,22 @@ text{
     margin-left: 1%;
     margin-right: 0%;
     margin-top: 1%;
+}
+
+.typeName{
+    width: 45%;
+    display: inline-block;
+    font-weight: bold;
+    color: #555555;
+    text-align: right;
+}
+.infoContent{
+    width: 55%;
+    display: inline-block;
+    padding-left: 10%;
+    text-align: left;
+}
+
+#searchBox{
+    width: 85%;
 }

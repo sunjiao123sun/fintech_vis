@@ -2,7 +2,7 @@ function Neod3Renderer() {
 
     var styleContents =
         "node {\
-          diameter: 68px;\
+          diameter: 60px;\
           color: #DFE1E3;\
           border-color: #D4D6D7;\
           border-width: 2px;\
@@ -222,7 +222,7 @@ function Neod3Renderer() {
         var graphView = neo.graphView()
             .style(styleSheet)
             .width($container.width()).height($container.height()).on('nodeClicked', dummyFunc).on('relationshipClicked', dummyFunc).on('nodeDblClicked', dummyFunc);
-        var svg = d3.select("#" + id).append("svg").attr("height","600px").attr("width","600px").attr("style","overflow:scroll");
+        var svg = d3.select("#" + id).append("svg").attr("height","100%").attr("width","100%").attr("style","overflow:auto");
         var renderer = svg.data([graphModel]);
         legend(svg, existingStyles);
         var zoomHandlers = {};
