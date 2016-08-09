@@ -4,7 +4,6 @@
     <link rel="shortcut icon" href="images/favicon.ico" >
     <!-- bootstrap-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
     <link rel="stylesheet" href="css/codemirror.css">
     <link rel="stylesheet" href="css/codemirror-neo.css">
     <link rel="stylesheet" href="css/datatable.css">
@@ -12,15 +11,16 @@
 
     <link rel="stylesheet" href="css/sweet-alert.css">
     <link rel="stylesheet" href="css/gh-fork-ribbon.css">
-
+    <link rel="stylesheet" href="css/jquery-ui.css">
     <link rel="stylesheet" href="css/cy2neo.css">
     <link rel="stylesheet" href="css/neod3.css">
     <link rel="stylesheet" href="css/style.css" media="screen">
 
+
     <title>Company Networks</title>
     <style>
         .form-control{
-            height: 37.33px;
+            height: 34.3px;
             line-height: 2;
         }
         #left_block{
@@ -100,20 +100,10 @@
             <hr>
             <form class="form-inline">
                 <div class="form-group">
-                    <label class="control-label" for="company">company:</label>
+                    <label class="control-label">company:</label>
                 </div>
                 <div class="form-group">
-                    <select id="company" class="form-control">
-                        <option value="APPLE INC">Apple</option>
-                        <option value="INTERNATIONAL BUSINESS MACHINES">IBM</option>
-                        <option value="ALPHABET INC">Google</option>
-                        ]
-                        <option value="AMAZON COM INC">Amazon</option>
-                        <option value="YAHOO INC">Yahoo</option>
-                    </select>
-                    <div>
-                        <input id="autocomplete" title="type &quot;a&quot;">
-                    </div>
+                    <input id="autocomplete" value="APPLE INC" title="type &quot;a&quot;">
                 </div>
             </form>
             <hr>
@@ -137,34 +127,32 @@
                     </select>
                 </div>
             </form>
+            <hr>
+            <button type="button" class="btn btn-info" id="querySubmit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Search</button>
         </div>
     </div>
 
     <div role="tabpanel" class="col-md-7">
-        <!-- Nav tabs -->
-        <!--<ul class="nav nav-tabs" role="tablist">-->
-            <!--<li role="presentation" class="active"><a href="#graph" aria-controls="home" role="tab" data-toggle="tab">Graph</a>-->
-            <!--</li>-->
-        <!--</ul>-->
-        <!-- Tab panes -->
         <div class="question-box">
             <div class="input-group col-md-8 col-md-offset-2">
-                <form action="......">
-                    <input type="text" id="searchBox" class="form-control" placeholder="type your question...">
+                <input type="text" id="searchBox" class="form-control" value="get aapl stock return in 06/2015" placeholder="type your question...">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit" >Submit</button>
+                        <button class="btn btn-default" type="submit" id="questionBtn">Submit</button>
                       </span>
-                </form>
             </div>
         </div>
+         <!--Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#graph" aria-controls="home" role="tab" data-toggle="tab">Graph</a></li>
+            <li role="presentation"><a href="#table" aria-controls="table" role="tab" data-toggle="tab">Table</a></li>
+        </ul>
+        <!-- Tab panes -->
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active">
-                <div class="tab-pane active" id="graph" style="overflow: auto">&nbsp;</div>
+            <div role="tabpanel" class="tab-pane active" id="graph">
+                <div class="tab-pane active" id="graph">&nbsp;</div>
             </div>
             <div role="tabpanel" class="tab-pane" id="table">
-                <div id="datatable">
-
-                </div>
+                <div id="datatable"></div>
             </div>
         </div>
     </div>
@@ -196,6 +184,7 @@
 <footer>
     <p class="text-center">This demo is made by Ling Huang, Wei Xu and Yang Zhang.</p>
 </footer>
+<script src="js/autocomplete.js"></script>
 <script src="js/jquery-3.1.0.min.js"></script>
 <script src="js/d3.v3.min.js"></script>
 <script src="js/codemirror.js"></script>
@@ -205,6 +194,7 @@
 <script src="js/exeQuery.js"></script>
 <script src="js/line-chart.js"></script>
 <script src="js/expand-node.js"></script>
+<script src="js/questionSubmit.js"></script>
 <script src="js/neod3.js"></script>
 <script src="js/neod3-visualization.js"></script>
 <script src="js/neo4d3.js"></script>
@@ -213,9 +203,7 @@
 <script src="js/cypher.datatable.js"></script>
 <script src="js/jquery.timelinr-0.9.6.js"></script>
 <script src="js/bootstrap-select.js"></script>
-<script src="js/jquery.js"></script>
 <script src="js/jquery-ui.js"></script>
-
 
 <!--<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>-->
 
@@ -234,7 +222,6 @@
             };
         }
         new Cy2NeoD3(config, "graph", "datatable", "cypher", "execute", connection, true);
-
     });
 </script>
 </body>

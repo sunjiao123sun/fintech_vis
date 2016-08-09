@@ -546,8 +546,8 @@ neo.layout = (function() {
     _force.init = function(render) {
       var accelerateLayout, d3force, forceLayout, linkDistance;
       forceLayout = {};
-      linkDistance = 180;
-      d3force = d3.layout.force().linkDistance(linkDistance).charge(-1100).gravity(0.1);
+      linkDistance = 100;
+      d3force = d3.layout.force().linkDistance(linkDistance).charge(-1000).gravity(0.1);
       accelerateLayout = function() {
         var d3Tick, maxAnimationFramesPerSecond, maxComputeTime, maxStepsPerTick, now;
         maxStepsPerTick = 100;
