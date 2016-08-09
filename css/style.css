@@ -6,7 +6,7 @@
 }
 
 #timeline {
-    width: 800px;
+    width: 100%
     height: 60px;
     overflow: hidden;
     margin: 2px auto;
@@ -118,7 +118,6 @@ text{
     height: 34px;
 }
 #questionBtn{
-    width:15%%;
 
 }
 

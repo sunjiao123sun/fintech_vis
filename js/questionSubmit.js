@@ -20,6 +20,9 @@ function QuestionSubmit() {
                         c.empty();
                         neod3.render("graph", c, graph);
                         renderResult("datatable", res.table);
+                        $("#graph").hide();
+                        $("#right_block").hide();
+                        $("#table").show();
                     } else {
                         if (err) {
                             console.log(err);

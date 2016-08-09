@@ -128,37 +128,33 @@
                 </div>
             </form>
             <hr>
-            <button type="button" class="btn btn-info" id="querySubmit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Search</button>
+            <button type="button" class="btn btn-info btn-block" id="querySubmit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Search</button>
         </div>
     </div>
 
     <div role="tabpanel" class="col-md-7">
         <div class="question-box">
             <div class="input-group col-md-8 col-md-offset-2">
-                <input type="text" id="searchBox" class="form-control" value="get aapl stock return in 06/2015" placeholder="type your question...">
-                      <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit" id="questionBtn">Submit</button>
-                      </span>
+                <input type="text" id="searchBox" class="form-control" value="get the suppliers of ibm" placeholder="type your question...">
+                <button class="btn btn-default" type="submit" id="questionBtn">Submit</button>
             </div>
         </div>
          <!--Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#graph" aria-controls="home" role="tab" data-toggle="tab">Graph</a></li>
-            <li role="presentation"><a href="#table" aria-controls="table" role="tab" data-toggle="tab">Table</a></li>
-        </ul>
+        <!--<ul class="nav nav-tabs" role="tablist" >-->
+            <!--<li role="presentation" class="active"><a href="#graph" aria-controls="home" role="tab" data-toggle="tab">Graph</a></li>-->
+            <!--<li role="presentation"><a href="#table" aria-controls="table" role="tab" data-toggle="tab">Table</a></li>-->
+        <!--</ul>-->
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="graph">
                 <div class="tab-pane active" id="graph">&nbsp;</div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="table">
-                <div id="datatable"></div>
-            </div>
+
         </div>
     </div>
 
-    <div class="col-md-3">
-        <div class="panel panel-default" id="right_block">
+    <div class="col-md-3" id="right_block">
+        <div class="panel panel-default" >
             <div class="panel-heading">
                 <h3 class="panel-title text-center">
                     <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> &nbsp;DETAIL INFORMATION
@@ -170,10 +166,12 @@
                 &nbsp;
             </div>
         </div>
-        <div class="line-chart">
-
-        </div>
+        <div class="line-chart"></div>
         <!-- /input-group -->
+    </div>
+
+    <div role="tabpanel" class="tab-pane col-md-10" id="table">
+        <div id="datatable"></div>
     </div>
 </div>
 

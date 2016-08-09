@@ -21,7 +21,7 @@ th, td {
 
 table.dataTable th {
     border-bottom-width: 2px;
-    font-weight: normal;
+    font-weight: bold;
     background-color: #f8f8f8;
 }
 

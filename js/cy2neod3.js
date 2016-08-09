@@ -152,6 +152,9 @@ function Cy2NeoD3(config, graphId, tableId, sourceId, execId, urlSource, renderG
 
     $("#dates a").click(function(evt) {
         $("#curDate").val($(this).text());
+        $("#graph").show();
+        $("#right_block").show();
+        $("#table").hide();
         execute();
     });
 
@@ -184,6 +187,9 @@ function Cy2NeoD3(config, graphId, tableId, sourceId, execId, urlSource, renderG
             execute();
             console.log("submit");
             $("#companyList").val($("#autocomplete").val());
+            $("#graph").show();
+            $("#right_block").show();
+            $("#table").hide();
         }
     });
     var question=new QuestionSubmit();
