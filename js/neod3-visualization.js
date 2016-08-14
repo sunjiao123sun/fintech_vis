@@ -59,8 +59,9 @@ function Neod3Renderer() {
         function node_styles(nodes) {
             function label(n) {
                 var labels = n["labels"];
+                //console.log("labels2:"+labels);
                 if (labels && labels.length) {
-                    return labels[labels.length - 1];
+                    return labels[labels.length - 2];
                 }
                 return "";
             }

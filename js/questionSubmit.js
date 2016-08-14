@@ -13,15 +13,16 @@ function QuestionSubmit() {
                 res = res || {}
                 //$("#res").val("res:"+res.graph.nodes[0].id);
                 //linechart.update(res);
+                //console.log("question return:"+res.table);
                 var graph = res.graph;
                 if (true) {
                     if (graph) {
                         var c = $("#graph");
                         c.empty();
-                        neod3.render("graph", c, graph);
+                        //neod3.render("graph", c, graph);
+                        //if(res.table.)
                         renderResult("datatable", res.table);
-                        $("#graph").hide();
-                        $("#right_block").hide();
+                        $(".loadBox").hide();
                         $("#table").show();
                     } else {
                         if (err) {
@@ -45,9 +46,10 @@ function QuestionSubmit() {
     var me = {
         questionSubmit: function(question) {
             console.log("question:"+question);
+            question = question.replace("%","%25");
             $.ajax({
                 type: "POST",
-                url: "http://10.1.0.196:8080/HelloForm?question="+question,
+                url: "http://10.2.2.75:8080/HelloForm?question="+question,
                 //url:"http://10.1.0.196:8989",
                 dataType: 'jsonp',
                 jsonp:"callback",
@@ -59,24 +61,6 @@ function QuestionSubmit() {
                 error:function(){
                     console.log("question fail!");
                 }
-                //,
-                //crossDomain : true,
-                //data: JSON.stringify({
-                //    "question":"myquestion"
-                //}),
-                //beforeSend: function(req) {
-                //    req.setRequestHeader("Access-Control-Allow-Origin:", "*")
-                //    req.setRequestHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS"),
-                //    req.setRequestHeader("Access-Control-Allow-Headers", "X-ACCESS_TOKEN, Access-Control-Allow-Origin, Authorization, Origin, x-requested-with, Content-Type, Content-Range, Content-Disposition, Content-Description")
-                //},
-                //contentType: "application/json",
-                //error: function(XMLHttpRequest, textStatus, errorThrown){
-                //    alert(XMLHttpRequest.readyState +" "+ XMLHttpRequest.status +" "+ XMLHttpRequest.responseText);
-                //} ,
-                //success: function(res) {
-                //    $("#json").html(res);
-                //    alert("json receive success!");
-                //}
             });
 
         }

@@ -34,6 +34,7 @@ function Neo(urlSource) {
 							cols.forEach(function(col, index) {
 								r[col] = row.row[index];
 							});
+							console.log(r);
 							return r;
 						});
 						var nodes = [];
@@ -53,7 +54,7 @@ function Neo(urlSource) {
 								  for(var p in n.properties||{}) { n[p]=n.properties[p];delete n.properties[p];}
 								  delete n.properties;
 								  nodes.push(n);
-								  labels=labels.concat(n.labels.filter(function(l) { labels.indexOf(l) == -1 }))
+								  labels=labels.concat(n.labels.filter(function(l) { labels.indexOf(l) == -1 }));
 							   }
 							});
 							rels = rels.concat(row.graph.relationships.map(

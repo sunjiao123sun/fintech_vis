@@ -14,7 +14,10 @@
     <link rel="stylesheet" href="css/jquery-ui.css">
     <link rel="stylesheet" href="css/cy2neo.css">
     <link rel="stylesheet" href="css/neod3.css">
+    <link rel="stylesheet" href="css/loadAnimated.css"/>
+    <link rel="stylesheet" href="css/loaders.css"/>
     <link rel="stylesheet" href="css/style.css" media="screen">
+
 
 
     <title>Company Networks</title>
@@ -34,7 +37,7 @@
 
 <body>
 <div style="display:none">
-    <input class="form-control" type="url" value="http://10.1.0.196:7474" id="neo4jUrl"/>
+    <input class="form-control" type="url" value="http://10.2.2.75:7474" id="neo4jUrl"/>
 
     <div>
         <textarea name="cypher" id="cypher" rows="4" cols="120" data-lang="cypher" class="code form-control">
@@ -135,14 +138,14 @@
     <div role="tabpanel" class="col-md-7">
         <div class="question-box">
             <div class="input-group col-md-8 col-md-offset-2">
-                <input type="text" id="searchBox" class="form-control" value="get the suppliers of ibm" placeholder="type your question...">
+                <input type="text" id="searchBox" class="form-control" value="if msft stock goes up 2%" placeholder="type your question...">
                 <button class="btn btn-default" type="submit" id="questionBtn">Submit</button>
             </div>
         </div>
-         <!--Nav tabs -->
+        <!--Nav tabs -->
         <!--<ul class="nav nav-tabs" role="tablist" >-->
-            <!--<li role="presentation" class="active"><a href="#graph" aria-controls="home" role="tab" data-toggle="tab">Graph</a></li>-->
-            <!--<li role="presentation"><a href="#table" aria-controls="table" role="tab" data-toggle="tab">Table</a></li>-->
+        <!--<li role="presentation" class="active"><a href="#graph" aria-controls="home" role="tab" data-toggle="tab">Graph</a></li>-->
+        <!--<li role="presentation"><a href="#table" aria-controls="table" role="tab" data-toggle="tab">Table</a></li>-->
         <!--</ul>-->
         <!-- Tab panes -->
         <div class="tab-content">
@@ -170,6 +173,19 @@
         <!-- /input-group -->
     </div>
 
+    <main class="loadBox col-md-7" style="display: none">
+        <div class="loaders">
+            <div class="loader">
+                <div class="loader-inner pacman">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </main>
     <div role="tabpanel" class="tab-pane col-md-10" id="table">
         <div id="datatable"></div>
     </div>
@@ -216,7 +232,7 @@
         var config = {}
         var connection = function () {
             return {
-                url: "http://10.1.0.196:7474",
+                url: "http://10.2.2.75:7474",
             };
         }
         new Cy2NeoD3(config, "graph", "datatable", "cypher", "execute", connection, true);

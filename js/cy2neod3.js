@@ -194,6 +194,10 @@ function Cy2NeoD3(config, graphId, tableId, sourceId, execId, urlSource, renderG
     });
     var question=new QuestionSubmit();
     $("#questionBtn").click(function(){
+        $("#right_block").hide();
+        $("#graph").hide();
+        $("#table").hide();
+        $(".loadBox").show();
         question.questionSubmit($("#searchBox").val());
     });
 }
